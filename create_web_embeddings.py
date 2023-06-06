@@ -36,4 +36,5 @@ docs = text_splitter.split_documents(data)
 embeddings = OpenAIEmbeddings()
 vectorStore_openAI = FAISS.from_documents(docs, embeddings)
 
-vectorStore_openAI.save_local("website_embeddings")
+with open("jobsite_embeddings.pkl", "wb") as f:
+    pickle.dump(vectorStore_openAI, f)
