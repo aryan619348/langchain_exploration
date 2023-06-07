@@ -8,7 +8,7 @@ import os
 load_dotenv()
 os.environ["OPENAI_API_KEY"] = os.getenv('OPENAI_API_KEY')
 
-loader = PyPDFLoader("hes-resume-cover-letter-guide.pdf")
+loader = PyPDFLoader("Graphic Designer Resume Example.pdf")
 data = loader.load_and_split()
 
 text_splitter = CharacterTextSplitter(separator='\n',
@@ -21,5 +21,5 @@ docs = text_splitter.split_documents(data)
 embeddings = OpenAIEmbeddings()
 vectorStore_openAI = FAISS.from_documents(docs, embeddings)
 
-with open("multiple_resume_embeddings.pkl", "wb") as f:
+with open("graphic_designer.pkl", "wb") as f:
     pickle.dump(vectorStore_openAI, f)

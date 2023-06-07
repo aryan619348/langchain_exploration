@@ -31,18 +31,21 @@ resume_tool = Tool(
     description="Useful for when you need to answer questions about the resume. input is the question"
 )
 
-#search = DuckDuckGoSearchTool()
+answer=resume_question("what is this document?")
+print(answer)
 
-def jobsite_question(input="",jobsite=""):
-    with open("jobsite_embeddings.pkl", "rb") as f:
-        jobsite = pickle.load(f)
-    chain = load_qa_chain(llm=llm, chain_type="stuff")
-    docs = jobsite.similarity_search(input)
-    answer=chain.run(input_documents=docs, question=input)
-    return answer
+# #search = DuckDuckGoSearchTool()
 
-job_tool = Tool(
-    name='job_question',
-    func= jobsite_question,
-    description="Useful for when you need to answer questions about the job.input is the question"
-)
+# def jobsite_question(input="",jobsite=""):
+#     with open("jobsite_embeddings.pkl", "rb") as f:
+#         jobsite = pickle.load(f)
+#     chain = load_qa_chain(llm=llm, chain_type="stuff")
+#     docs = jobsite.similarity_search(input)
+#     answer=chain.run(input_documents=docs, question=input)
+#     return answer
+
+# job_tool = Tool(
+#     name='job_question',
+#     func= jobsite_question,
+#     description="Useful for when you need to answer questions about the job.input is the question"
+# )
